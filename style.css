@@ -17,8 +17,10 @@ body {
 
 .keys {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .key {
@@ -50,4 +52,15 @@ kbd {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #ffc600;
+}
+
+@media (max-width: 200px) {
+  .keys {
+    flex-direction: column;
+  }
+
+  .key {
+    width: 80%;
+    max-width: 250px;
+  }
 }

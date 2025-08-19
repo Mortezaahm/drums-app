@@ -3,10 +3,8 @@ function playSound(e) {
 
   if (e.type === "keydown") {
     keyCode = e.keyCode;
-  }
-
-  if (e.type === "click") {
-    keyCode = e.currentTarget.getAttribute("data-key");
+  } else {
+    keyCode = e.currentTarget.getAttribute("data-key"); // for click and touchstart
   }
 
   const key = document.querySelector(`.key[data-key="${keyCode}"]`);
@@ -16,6 +14,10 @@ function playSound(e) {
   audio.currentTime = 0; // Rewind to the start
   audio.play();
   key.classList.add("playing");
+
+  setTimeout(() => {
+    key.classList.remove("playing");
+  }, 100);
 }
 
 function removeTransition(e) {
@@ -27,4 +29,7 @@ const keys = document.querySelectorAll(".key");
 keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
 
 window.addEventListener("keydown", playSound);
-keys.forEach((key) => key.addEventListener("click", playSound));
+keys.forEach((key) => {
+  key.addEventListener("click", playSound); // For click
+  key.addEventListener("touchstart", playSound); // For touch
+});
