@@ -20,7 +20,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  /*gap: 10px;*/
 }
 
 .key {
@@ -54,9 +54,12 @@ kbd {
   color: #ffc600;
 }
 
-@media (max-width: 200px) {
+@media (max-width: 768px) {
   .keys {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 10px;
   }
 
   .key {
